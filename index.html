@@ -1,0 +1,317 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Whittle for Mac: a cleaner Mac, nothing lost</title>
+<meta name="description" content="Whittle is a free Mac cleaner. It finds caches, logs and build files you can let go, and moves only what you tick to the Trash, so you can put anything back.">
+<meta name="color-scheme" content="light dark">
+<meta property="og:title" content="Whittle for Mac">
+<meta property="og:description" content="A free Mac cleaner that moves only what you tick to the Trash.">
+<meta property="og:image" content="https://hystericmoon.github.io/whittle-releases/img/overview-light.jpg">
+<link rel="icon" href="img/curl.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css?v=2">
+<script>document.documentElement.classList.add('js')</script>
+</head>
+<body>
+
+<header class="nav">
+  <a class="wordmark" href="#top" aria-label="Whittle, back to top">
+    <svg viewBox="41.5 8.5 44 44" width="28" height="28" aria-hidden="true"><path d="M47 40 C49 26 62 18 72 24 C80 29 78 41 69 42 C63 43 60 36 64 33" fill="none" stroke="currentColor" stroke-width="7.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    <span>Whittle</span>
+  </a>
+  <nav aria-label="Sections">
+    <a href="#inside">Inside</a>
+    <a href="#menu-bar">Menu bar</a>
+    <a href="#cleanup">How it works</a>
+    <a href="#questions">Questions</a>
+    <a class="nav-action" href="#download">Download</a>
+  </nav>
+</header>
+
+<main id="top">
+
+  <!-- Hero -->
+  <section class="hero" aria-labelledby="hero-title">
+    <div class="hero-copy">
+      <h1 id="hero-title" class="reveal">A cleaner Mac, nothing lost.</h1>
+      <p class="lead reveal">Whittle finds caches, logs and build files your Mac can let go, and moves only what you tick to the Trash, so you can put anything back.</p>
+      <div class="hero-action reveal">
+        <a class="button" href="https://github.com/hystericmoon/whittle-releases/releases/download/v0.2.6/Whittle-0.2.6.dmg">Download for Mac</a>
+        <p class="small muted">Free · Version 0.2.6 · 5.3 MB · macOS 26 Tahoe or later</p>
+      </div>
+    </div>
+
+    <div class="stage hero-stage">
+      <div class="shutter">
+        <div class="scan" data-ui id="scan" aria-label="Try Smart Scan: tick and untick rows">
+          <div class="scan-head">
+            <div>
+              <p class="scan-title">Smart Scan</p>
+              <p class="scan-sub" id="scan-sub">Safe items are ticked. Items marked “Check first” are up to you.</p>
+            </div>
+            <button class="ui-primary" id="scan-move" type="button">Move 15.61 GB to Trash</button>
+          </div>
+
+          <div class="disk" aria-live="polite">
+            <div class="disk-row">
+              <span class="disk-name">Macintosh HD</span>
+              <span class="disk-free"><b>120 GB</b> available of 494 GB</span>
+            </div>
+            <div class="bar" role="img" id="disk-bar" aria-label="Used 374 GB, of which 15.61 GB can be cleaned. Free 120 GB.">
+              <span class="bar-used" id="bar-used"></span><span class="bar-hatch" id="bar-hatch"></span>
+            </div>
+            <div class="legend">
+              <span><i class="key key-used"></i>Used <b>374 GB</b></span>
+              <span><i class="key key-hatch"></i>Can be cleaned <b id="legend-ready">15.61 GB</b></span>
+              <span><i class="key key-free"></i>Free <b>120 GB</b></span>
+            </div>
+          </div>
+
+          <div class="done" id="scan-done" hidden>
+            <p class="done-title" id="done-title">Moved 15.61 GB to the Trash</p>
+            <p class="done-sub">It's in the Trash now. Empty the Trash to free the space.</p>
+            <button class="ui-secondary" id="scan-putback" type="button">Put back 6 items</button>
+          </div>
+
+          <ul class="rows" id="scan-rows">
+            <li><label><input type="checkbox" checked data-bytes="8420000000"><span class="row-text"><b>Xcode DerivedData</b><small>Build files Xcode makes again the next time you build.</small><small class="path">~/Library/Developer/Xcode/DerivedData</small></span><span class="size">8.42 GB</span></label></li>
+            <li><label><input type="checkbox" checked data-bytes="3100000000"><span class="row-text"><b>iOS device support</b><small>Debug symbols copied from devices. Xcode copies them again when needed.</small><small class="path">~/Library/Developer/Xcode/iOS DeviceSupport</small></span><span class="size">3.1 GB</span></label></li>
+            <li><label><input type="checkbox" checked data-bytes="1800000000"><span class="row-text"><b>com.spotify.client</b><small>Temporary files the app rebuilds when it needs them.</small><small class="path">~/Library/Caches/com.spotify.client</small></span><span class="size">1.8 GB</span></label></li>
+            <li><label><input type="checkbox" checked data-bytes="1200000000"><span class="row-text"><b>npm cache</b><small>Packages npm downloads again when a project needs them.</small><small class="path">~/.npm</small></span><span class="size">1.2 GB</span></label></li>
+            <li><label><input type="checkbox" checked data-bytes="920000000"><span class="row-text"><b>com.google.Chrome</b><small>Temporary files the app rebuilds when it needs them.</small><small class="path">~/Library/Caches/com.google.Chrome</small></span><span class="size">920 MB</span></label></li>
+            <li><label><input type="checkbox" data-bytes="310000000"><span class="row-text"><b>com.apple.Safari <em class="check-first">Check first</em></b><small>Used by an Apple app. It's rebuilt when needed, but it may be in use right now.</small><small class="path">~/Library/Caches/com.apple.Safari</small></span><span class="size">310 MB</span></label></li>
+            <li><label><input type="checkbox" checked data-bytes="165000000"><span class="row-text"><b>Logs</b><small>Records apps keep while they run. Only needed for troubleshooting.</small><small class="path">~/Library/Logs</small></span><span class="size">165 MB</span></label></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Inside Whittle -->
+  <section class="inside" id="inside" aria-labelledby="inside-title">
+    <div class="inside-index">
+      <h2 id="inside-title" class="reveal">Inside Whittle</h2>
+      <div class="screens reveal" role="tablist" aria-label="Screens">
+        <button role="tab" aria-selected="true" aria-controls="screen-shot" data-shot="overview" data-note="Everything on one glass page: what's ready to clean, your disk, the Trash, your last cleanup, and live CPU, memory, network and battery.">Overview</button>
+        <button role="tab" aria-selected="false" aria-controls="screen-shot" data-shot="smart-scan" data-note="One scan through caches, logs, crash reports and developer junk. Safe items are ticked; the rest are yours to decide.">Smart Scan</button>
+        <button role="tab" aria-selected="false" aria-controls="screen-shot" data-shot="large-old" data-note="Your biggest and oldest files, only suggested. Nothing in Documents, Desktop, Pictures, Movies or Music is ever ticked for you.">Large &amp; old files</button>
+        <button role="tab" aria-selected="false" aria-controls="screen-shot" data-shot="space-lens" data-note="A map of what takes up space. Open a folder to look inside, then move single files you don't need.">Space Lens</button>
+        <button role="tab" aria-selected="false" aria-controls="screen-shot" data-shot="duplicates" data-note="Files with exactly the same contents, checked again just before they move. At least one copy always stays.">Duplicates</button>
+        <button role="tab" aria-selected="false" aria-controls="screen-shot" data-shot="uninstaller" data-note="Remove an app with the settings and caches it left behind, found by its bundle ID.">Uninstaller</button>
+        <button role="tab" aria-selected="false" aria-controls="screen-shot" data-shot="history" data-note="Every cleanup is logged with where each item went, so you can put it back.">History</button>
+      </div>
+      <p class="screen-note reveal" id="screen-note" aria-live="polite">Everything on one glass page: what's ready to clean, your disk, the Trash, your last cleanup, and live CPU, memory, network and battery.</p>
+    </div>
+    <div class="stage inside-stage" id="screen-shot" role="tabpanel" aria-labelledby="inside-title">
+      <picture class="shot drift">
+        <source id="shot-dark" media="(prefers-color-scheme: dark)" srcset="img/overview-dark.jpg">
+        <img id="shot-img" src="img/overview-light.jpg" width="1600" height="1025" alt="Whittle's Overview screen with demo data: 15.63 GB ready to clean, Macintosh HD with 120 GB available, and live CPU, memory and network.">
+      </picture>
+    </div>
+  </section>
+
+  <!-- Menu bar -->
+  <section class="menubar" id="menu-bar" aria-labelledby="menubar-title">
+    <div class="menubar-intro">
+      <div>
+        <h2 id="menubar-title" class="reveal">Your Mac, from the menu bar</h2>
+        <p class="reveal">Turn on the monitors you want. Each one can sit in the menu bar on its own, and Whittle only measures while something is showing.</p>
+      </div>
+      <picture class="menubar-shot reveal">
+        <source media="(prefers-color-scheme: dark)" srcset="img/menu-bar-dark.png">
+        <img src="img/menu-bar-light.png" width="600" height="774" loading="lazy" alt="Whittle's menu bar panel: CPU 46%, memory 10 GB of 16 GB, 120 GB free, network speeds, battery 82% charging, and 15.63 GB ready to clean.">
+      </picture>
+    </div>
+
+    <div class="bands">
+      <div class="band is-on" style="--band: var(--coral)">
+        <p class="band-text">Show CPU in the menu bar.</p>
+        <p class="band-more">Each core, the GPU, load, thermal state and the apps using the most.</p>
+        <button class="switch" role="switch" aria-checked="true" aria-label="Show CPU in the menu bar" data-ui><span></span></button>
+      </div>
+      <div class="band" style="--band: var(--lime)">
+        <p class="band-text">Show memory in the menu bar.</p>
+        <p class="band-more">What's used, pressure, swap and the apps holding the most.</p>
+        <button class="switch" role="switch" aria-checked="false" aria-label="Show memory in the menu bar" data-ui><span></span></button>
+      </div>
+      <div class="band" style="--band: var(--mint)">
+        <p class="band-text">Show network in the menu bar.</p>
+        <p class="band-more">Download and upload speed, interfaces and addresses.</p>
+        <button class="switch" role="switch" aria-checked="false" aria-label="Show network in the menu bar" data-ui><span></span></button>
+      </div>
+      <div class="band" style="--band: var(--olive)">
+        <p class="band-text">Show battery in the menu bar.</p>
+        <p class="band-more">Charge, health, cycle count and temperature.</p>
+        <button class="switch" role="switch" aria-checked="false" aria-label="Show battery in the menu bar" data-ui><span></span></button>
+      </div>
+      <div class="band is-on" style="--band: var(--peach)">
+        <p class="band-text">Tell me when the disk runs low.</p>
+        <p class="band-more">A notice when free space drops, before macOS starts to struggle.</p>
+        <button class="switch" role="switch" aria-checked="true" aria-label="Tell me when the disk runs low" data-ui><span></span></button>
+      </div>
+    </div>
+  </section>
+
+  <!-- How a cleanup goes -->
+  <section class="cleanup" id="cleanup" aria-labelledby="cleanup-title">
+    <h2 id="cleanup-title" class="reveal">How a cleanup goes</h2>
+
+    <div class="exchange">
+      <p class="say reveal">First, run Smart Scan.</p>
+      <div class="call reveal"><span class="ui-primary as-static" data-ui>Run Smart Scan</span><span class="muted small">It reads, it doesn't move anything.</span></div>
+      <figure class="response reveal">
+        <picture>
+          <source media="(prefers-color-scheme: dark)" srcset="img/smart-scan-dark.jpg">
+          <img src="img/smart-scan-light.jpg" width="1600" height="1025" loading="lazy" alt="Smart Scan results: user caches and logs listed with sizes, nine items ticked, and a button to move 15.63 GB to the Trash.">
+        </picture>
+      </figure>
+    </div>
+
+    <div class="exchange">
+      <p class="say reveal">Then check what's ticked.</p>
+      <div class="call reveal" data-ui>
+        <span class="ui-check" aria-hidden="true"></span>
+        <span class="row-text"><b>com.apple.Safari <em class="check-first">Check first</em></b><small>Used by an Apple app. It may be in use right now.</small></span>
+      </div>
+      <div class="response response-text reveal">
+        <p>Only items Whittle knows are safe come ticked. Anything it isn't sure of says <b>Check first</b> and waits for you. Nothing in Documents, Desktop, Pictures, Movies, Music or iCloud Drive is ever ticked for you.</p>
+      </div>
+    </div>
+
+    <div class="exchange">
+      <p class="say reveal">Finally, move it to the Trash.</p>
+      <div class="call reveal"><span class="ui-primary as-static" data-ui>Move 15.63 GB to Trash</span><span class="muted small">Everything goes to the Trash. Nothing is erased.</span></div>
+      <figure class="response response-wide reveal">
+        <picture>
+          <source media="(prefers-color-scheme: dark)" srcset="img/smart-scan-done-dark.jpg">
+          <img src="img/smart-scan-done-light.jpg" width="1600" height="1025" loading="lazy" alt="Done screen: Moved 2.72 GB to the Trash, with buttons to empty the Trash or put back 2 items.">
+        </picture>
+        <figcaption>The space is freed when you empty the Trash. Until then, <b>Put back</b> or History returns every item to where it was.</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <!-- What Whittle looks at -->
+  <section class="looks" aria-labelledby="looks-title">
+    <h2 id="looks-title" class="reveal">What Whittle looks at</h2>
+    <p class="looks-intro reveal">Whittle only cleans from a fixed list of places. Everything else waits for you to pick it, one item at a time.</p>
+
+    <div class="group reveal">
+      <p class="group-name">System junk, ticked when safe</p>
+      <ul>
+        <li><i class="dot dot-safe"></i><span>App caches</span><em>~/Library/Caches</em></li>
+        <li><i class="dot dot-safe"></i><span>Logs</span><em>~/Library/Logs</em></li>
+        <li><i class="dot dot-safe"></i><span>Crash reports</span><em>~/Library/Logs/DiagnosticReports</em></li>
+        <li><i class="dot dot-safe"></i><span>Mail downloads</span><em>Mail’s attachment folder</em></li>
+        <li><i class="dot dot-safe"></i><span>Old iPhone and iPad backups</span><em>MobileSync/Backup</em></li>
+      </ul>
+    </div>
+
+    <div class="group reveal">
+      <p class="group-name">Developer junk, ticked when safe</p>
+      <ul>
+        <li><i class="dot dot-safe"></i><span>Xcode DerivedData</span><em>Developer/Xcode/DerivedData</em></li>
+        <li><i class="dot dot-safe"></i><span>Xcode archives</span><em>Developer/Xcode/Archives</em></li>
+        <li><i class="dot dot-safe"></i><span>Device support</span><em>iOS, watchOS, tvOS, visionOS</em></li>
+        <li><i class="dot dot-safe"></i><span>SwiftUI previews</span><em>Xcode/UserData/Previews</em></li>
+        <li><i class="dot dot-safe"></i><span>Simulator caches</span><em>CoreSimulator/Caches</em></li>
+        <li><i class="dot dot-safe"></i><span>npm and Gradle caches</span><em>~/.npm · ~/.gradle</em></li>
+      </ul>
+    </div>
+
+    <div class="group reveal">
+      <p class="group-name">Only what you pick</p>
+      <ul>
+        <li><i class="dot dot-pick"></i><span>Large and old files</span><em>suggested, never ticked</em></li>
+        <li><i class="dot dot-pick"></i><span>Duplicates</span><em>one copy always stays</em></li>
+        <li><i class="dot dot-pick"></i><span>Similar photos</span><em>one per group stays</em></li>
+        <li><i class="dot dot-pick"></i><span>Apps and their leftovers</span><em>found by bundle ID</em></li>
+        <li><i class="dot dot-pick"></i><span>Login items</span><em>~/Library/LaunchAgents</em></li>
+        <li><i class="dot dot-pick"></i><span>Empty Trash</span><em>always asks first</em></li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- Questions -->
+  <section class="faq" id="questions" aria-labelledby="faq-title">
+    <h2 id="faq-title" class="reveal">Questions</h2>
+    <div class="tiles">
+      <details name="faq" open>
+        <summary>Is Whittle free?</summary>
+        <p>Yes. There's no trial, no account and no upgrade to buy.</p>
+      </details>
+      <details name="faq">
+        <summary>How do I install it?</summary>
+        <p>Open the DMG and drag Whittle to Applications. The first time you open it, macOS says it can't check it for malicious software: click Done, then open System Settings › Privacy &amp; Security and click Open Anyway next to “Whittle was blocked”. You only do this once per download.</p>
+      </details>
+      <details name="faq">
+        <summary>Why does macOS warn me about it?</summary>
+        <p>Whittle isn't notarized by Apple yet, which needs a paid developer account. The app is signed and works the same; macOS just asks you to confirm it once. If it bounces in the Dock and doesn't open, restart your Mac and try again.</p>
+      </details>
+      <details name="faq">
+        <summary>Does Whittle delete my files?</summary>
+        <p>No. Everything it cleans goes to the Trash, and History can put it back. The only permanent step is Empty Trash, which has its own button and always asks first, naming the size.</p>
+      </details>
+      <details name="faq">
+        <summary>Why does it ask for Full Disk Access?</summary>
+        <p>macOS keeps some folders private, such as other apps' data, Mail and Safari. With Full Disk Access, Whittle can include the caches and logs inside them. Without it, Whittle still works and lists what it couldn't read.</p>
+      </details>
+      <details name="faq">
+        <summary>Which Macs does it run on?</summary>
+        <p>Macs with macOS 26 Tahoe or later, Apple silicon and Intel.</p>
+      </details>
+      <details name="faq">
+        <summary>Does it update itself?</summary>
+        <p>Not yet. Come back to this page for new versions; your settings, history and Full Disk Access carry over when you replace the app.</p>
+      </details>
+      <details name="faq">
+        <summary>Does it collect anything about me?</summary>
+        <p>No. Whittle has no account, no analytics and no tracking. Your scans and history stay on your Mac.</p>
+      </details>
+      <details name="faq">
+        <summary>Does it free RAM or scan for viruses?</summary>
+        <p>No. macOS manages memory well on its own, and Whittle isn't an antivirus. It shows memory use in the menu bar so you can see what's going on.</p>
+      </details>
+    </div>
+  </section>
+
+  <!-- Download -->
+  <section class="get" id="download" aria-labelledby="get-title">
+    <div class="get-copy">
+      <h2 id="get-title" class="reveal">Get Whittle</h2>
+      <p class="reveal">Open the DMG, drag Whittle to Applications, then allow it once in Privacy &amp; Security.</p>
+    </div>
+    <div class="dialog reveal" data-ui aria-labelledby="dialog-title" role="group">
+      <div class="dialog-head">
+        <img src="img/curl.svg" width="44" height="44" alt="">
+        <div>
+          <p class="dialog-title" id="dialog-title">Whittle 0.2.6</p>
+          <p class="dialog-sub">5.3 MB · macOS 26 Tahoe or later</p>
+        </div>
+      </div>
+      <p class="dialog-label" id="lang-label">The app speaks</p>
+      <div class="segmented" role="radiogroup" aria-labelledby="lang-label">
+        <button role="radio" aria-checked="true" data-lang="en" type="button">English</button>
+        <button role="radio" aria-checked="false" data-lang="id" type="button">Bahasa Indonesia</button>
+      </div>
+      <p class="dialog-preview"><span class="ui-primary as-static" id="lang-preview">Move 15.63 GB to Trash</span><span class="small muted" id="lang-note">It follows your Mac's language.</span></p>
+      <a class="button button-block" href="https://github.com/hystericmoon/whittle-releases/releases/download/v0.2.6/Whittle-0.2.6.dmg">Download Whittle 0.2.6</a>
+      <p class="small muted"><a href="https://github.com/hystericmoon/whittle-releases/releases">All versions and release notes</a></p>
+    </div>
+  </section>
+
+</main>
+
+<footer class="foot">
+  <p class="muted">Whittle for Mac. Free.</p>
+  <p class="foot-links"><a href="https://github.com/hystericmoon/whittle-releases/releases">Releases</a><a href="https://github.com/hystericmoon/whittle-releases/issues">Report a problem</a></p>
+  <p class="muted foot-end">© 2026 · No tracking</p>
+</footer>
+
+<script src="site.js" defer></script>
+</body>
+</html>

@@ -2,6 +2,8 @@
 
 Whittle your Mac down to what matters.
 
+**Website:** https://hystericmoon.github.io/whittle-releases/
+
 Whittle finds caches, logs, build files and other things your Mac can let go, and moves what you choose to the Trash. It also shows large and old files, duplicates, similar photos, app leftovers and login items, and keeps an eye on CPU, memory, disks, network and battery from the menu bar.
 
 ## Download

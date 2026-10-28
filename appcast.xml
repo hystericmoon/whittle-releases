@@ -1,0 +1,14 @@
+<?xml version="1.0" standalone="yes"?>
+<rss xmlns:sparkle="http://www.andymatuschak.org/xml-namespaces/sparkle" version="2.0">
+    <channel>
+        <title>Whittle</title>
+        <item>
+            <title>0.2.7</title>
+            <pubDate>Wed, 28 Oct 2026 14:28:52 +0700</pubDate>
+            <sparkle:version>9</sparkle:version>
+            <sparkle:shortVersionString>0.2.7</sparkle:shortVersionString>
+            <sparkle:minimumSystemVersion>26.0</sparkle:minimumSystemVersion>
+            <enclosure url="https://github.com/hystericmoon/whittle-releases/releases/download/v0.2.7/Whittle-0.2.7.dmg" length="5280536" type="application/octet-stream" sparkle:edSignature="3WY79wCIzVqvDnnMshsa67/R/Kkr2FjE4jbWZRu8JjFEpcG4IpIrGjH8x8Kci+FvKlx/ffYHUXof+PDHElScBw=="/>
+        </item>
+    </channel>
+</rss>

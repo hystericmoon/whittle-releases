@@ -3,6 +3,14 @@
     <channel>
         <title>Whittle</title>
         <item>
+            <title>0.2.8</title>
+            <pubDate>Wed, 28 Oct 2026 16:11:45 +0700</pubDate>
+            <sparkle:version>10</sparkle:version>
+            <sparkle:shortVersionString>0.2.8</sparkle:shortVersionString>
+            <sparkle:minimumSystemVersion>26.0</sparkle:minimumSystemVersion>
+            <enclosure url="https://github.com/hystericmoon/whittle-releases/releases/download/v0.2.8/Whittle-0.2.8.dmg" length="5318514" type="application/octet-stream" sparkle:edSignature="uJk2xw29vqPFEtuDAwoXDCtxIHQEHUjJlBhFyltmSrRnSw8nZJrhyC5er9rYfy/z2Wl6GGejQ5IpfCVFdWy1BQ=="/>
+        </item>
+        <item>
             <title>0.2.7</title>
             <pubDate>Wed, 28 Oct 2026 14:28:52 +0700</pubDate>
             <sparkle:version>9</sparkle:version>
